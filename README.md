@@ -41,6 +41,7 @@ terragrunt init -upgrade
 ** PLAN , Apply and Destroy Command** 
 ```
 terragrunt run --all plan
+terragrunt run --all plan --filter '!staging/*' --filter '!dev/eks-addons' plan
 terragrunt run --all apply --non-interactive
 terragrunt run --all destroy --non-interactive
 ```
