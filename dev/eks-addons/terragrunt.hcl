@@ -1,5 +1,5 @@
 terraform {
-  source = "git@github.com:amitactive2008/terragrunt-eks-module.git//eks-addons?ref=0.1.0"
+  source = "git@github.com:amitactive2008/terragrunt-eks-module.git//eks-addons?ref=0.1.1"
 }
 
 include "root" {
@@ -17,8 +17,17 @@ inputs = {
   eks_name = dependency.eks.outputs.eks_name
   openid_provider_arn = dependency.eks.outputs.openid_provider_arn
 
+#  enable_eks_oidc                = true
+
+  enable_eks_pod_identity         = true
+  pod_identity_addon_version      = "v1.3.10-eksbuild.3"
+
   enable_cluster_autoscaler      = true
   cluster_autoscaler_helm_verion = "9.57.0"
+  enable_ebs_csi_driver           = true
+
+  enable_lb_controller            = true # Make sure to enable enable_eks_pod_identity also if you are enabling lb_controller
+
 }
 
 dependency "eks" {

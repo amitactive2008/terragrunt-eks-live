@@ -1,0 +1,15 @@
+# This will allow aws-cli pod with SA eks-pod-identity-sa to have s3 list.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+  name: aws-cli
+  namespace: default
+spec:
+  serviceAccountName: eks-pod-identity-sa
+  containers:
+  - image: amazon/aws-cli
+    name: aws-cli
+    command: ["/bin/bash", "-c", "--"]
+    args: ["while true;do sleep 30; done;"]
