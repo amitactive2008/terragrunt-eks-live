@@ -44,6 +44,10 @@ The automation provisions the following components:
 
 - **EKS Pod Identity Agent**
   - Simplifies IAM permission management for applications running on EKS
+    
+- **EKS OIDC Provider setup**
+  - It gives permissions to a specific Kubernetes Service Account. Only the pods using that service account get those specific permissions (e.g., access to one specific S3 bucket).
+  - It's an old way to provide pod access to AWS resources. Modern way to to use EKS Pod Identity. ( I have Disabled it by default )
 
 ---
 
@@ -166,7 +170,8 @@ terragrunt run-all plan
 ## 4. Apply the Infrastructure
 
 ```bash
-terragrunt run-all apply --non-interactive
+[~/terragrunt-eks-live: 10:33:02 ]:terragrunt run-all apply --non-interactive
+[~/terragrunt-eks-live: 10:33:04 ]: terragrunt run --all plan --filter '!staging' plan ( If you want to run for dev infra
 ```
 
 ---
